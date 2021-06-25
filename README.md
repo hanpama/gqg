@@ -40,13 +40,13 @@ GQG helps you to explicitly annotate the resolver and source fields.
 
 ```graphql
 type Post implements Node {
-  # "Our post entity already have id field (which is a string),
+  # "Our post entity already has `id` field (which is a string),
   # but it should be resolved to a Relay global ID."
   id: ID!
     @resolve @source(name: "id", type: "String!")
 
   # "title, publishedAt, and content are simple scalars
-  # and our Post entity have the exact same names."
+  # and our Post entity have the exact same fields."
   title: String!
 
   publishedAt: Date!
@@ -55,7 +55,7 @@ type Post implements Node {
 
   author: User!
     @resolve @source(name: "authorId", type: "String!")
-    # "We store post-author relation as `authorId` field in `Post` entity.
+    # "We store post-author relations as `authorId` field in `Post` entity.
     # This author resolver will load the actual User entity from the database."
 }
 ```
