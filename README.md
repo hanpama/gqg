@@ -6,6 +6,10 @@ Schema-first GraphQL code generator
 ## Usage
 
 ```sh
+npm install --global gqg
+```
+
+```sh
 gqg (SCHEMA_DIR) (OUTPUT_FILE)
 # example: gqg schema/ src/__test__/testSchema.ts
 ```
