@@ -36,7 +36,7 @@ type Post implements Node {
 When you define a type like `Post`, you would have a blueprint of
 how its resolver and source type should be.
 
-GQG helps you to explicitly annotate the resolvers and source.
+GQG helps you to explicitly annotate the resolver and source fields.
 
 ```graphql
 type Post implements Node {
@@ -81,7 +81,7 @@ export interface PostResolver<TContext> {
 }
 ```
 
-Now, You can implement `PostResolver` and pass the resolver instance to a function `createGraphQLSchema`
+Now, you can implement `PostResolver` and pass the resolver instance to a function `createGraphQLSchema`
 which is also created by GQG.
 
 ```ts
@@ -115,5 +115,5 @@ Execution of `gqg schema/ src/__test__/testSchema.ts` creates a single file to t
 location of `src/__test__/testSchema.ts`. You can check [the generated code](src/__test__/testSchema.ts).
 
 It should be much more complex in a real application though,
-you can also find [the test implementation](src/__test__/schemaExecution.test.ts) of the resolvers.
+you can also find [the test implementation](src/__test__/schemaExecution.test.ts).
 
