@@ -1,0 +1,17 @@
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+extend type Query {
+  node(id: ID): Node
+    @resolve
+  nodes(ids: [ID!]!): [Node!]!
+    @resolve
+}

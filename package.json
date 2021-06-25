@@ -1,0 +1,30 @@
+{
+  "name": "gqg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "renderTestSchema": "node dist src/__test__/schema src/__test__/testSchema.ts",
+    "test": "npm run build && npm run renderTestSchema && npm run build && jest dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hanpama/gqg.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hanpama/gqg/issues"
+  },
+  "homepage": "https://github.com/hanpama/gqg#readme",
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.14.5",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.12.4",
+    "graphql": "^15.5.1",
+    "jest": "^27.0.5",
+    "typescript": "^4.3.4"
+  }
+}

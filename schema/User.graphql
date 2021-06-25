@@ -1,0 +1,12 @@
+type User implements Node {
+  id: ID!
+    @resolve @source(name: "id", type: "String!")
+
+  username: String!
+
+  profileUrl: String!
+    @resolve @source(name: "profileS3Uri", type: "String!")
+
+  posts(first: Int, after: String, last: Int, before: String): PostConnection!
+    # If a field has any arguments, it requires the resolver
+}

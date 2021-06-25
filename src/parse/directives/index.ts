@@ -1,0 +1,5 @@
+export { ResolveOption, getResolveDirectiveValue } from './resolve'
+export { ImportOption, getImportDirectiveValues, getOneOrNoImportDirectiveValue } from './import'
+export { ExtendOption, getExtendDirectiveValue } from './extend'
+export { SourceOption, getSourceDirectiveValues } from './source'
+export { getDeprecationReason } from './deprecated'

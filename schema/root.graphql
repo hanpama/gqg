@@ -1,0 +1,14 @@
+type Query {
+  echo(message: String!): String!
+}
+
+type Mutation {
+  echo(message: String!): String!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+scalar Date

@@ -1,0 +1,24 @@
+type Post implements Node {
+  id: ID!
+    @resolve @source(name: "id", type: "String!")
+
+  title: String!
+
+  publishedAt: Date!
+
+  content: String!
+
+  author: User!
+    @resolve @source(name: "authorId", type: "String!")
+}
+
+type PostConnection {
+  edges: [PostEdge!]!
+  pageInfo: PageInfo!
+}
+
+type PostEdge {
+  node: Post!
+    @resolve
+  cursor: String!
+}
