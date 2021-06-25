@@ -120,20 +120,20 @@ export function createGraphQLSchema<TContext>(config?: Config<TContext>): graphq
     interfaces: () => [NodeType],
     isTypeOf: config?.Post?.__type,
     fields: () => ({
-      id: {
+      id: { 
         type: new graphql.GraphQLNonNull(IDType), description: undefined, deprecationReason: undefined, args: {},
         resolve: config && config.Post.id as any,
       },
-      title: {
+      title: { 
         type: new graphql.GraphQLNonNull(StringType), description: undefined, deprecationReason: undefined, args: {},
       },
-      publishedAt: {
+      publishedAt: { 
         type: new graphql.GraphQLNonNull(DateType), description: undefined, deprecationReason: undefined, args: {},
       },
-      content: {
+      content: { 
         type: new graphql.GraphQLNonNull(StringType), description: undefined, deprecationReason: undefined, args: {},
       },
-      author: {
+      author: { 
         type: new graphql.GraphQLNonNull(UserType), description: undefined, deprecationReason: undefined, args: {},
         resolve: config && config.Post.author as any,
       },
@@ -145,10 +145,10 @@ export function createGraphQLSchema<TContext>(config?: Config<TContext>): graphq
     interfaces: () => [],
     isTypeOf: config?.PostConnection?.__type,
     fields: () => ({
-      edges: {
+      edges: { 
         type: new graphql.GraphQLNonNull(new graphql.GraphQLList(new graphql.GraphQLNonNull(PostEdgeType))), description: undefined, deprecationReason: undefined, args: {},
       },
-      pageInfo: {
+      pageInfo: { 
         type: new graphql.GraphQLNonNull(PageInfoType), description: undefined, deprecationReason: undefined, args: {},
       },
     }),
@@ -159,11 +159,11 @@ export function createGraphQLSchema<TContext>(config?: Config<TContext>): graphq
     interfaces: () => [],
     isTypeOf: config?.PostEdge?.__type,
     fields: () => ({
-      node: {
+      node: { 
         type: new graphql.GraphQLNonNull(PostType), description: undefined, deprecationReason: undefined, args: {},
         resolve: config && config.PostEdge.node as any,
       },
-      cursor: {
+      cursor: { 
         type: new graphql.GraphQLNonNull(StringType), description: undefined, deprecationReason: undefined, args: {},
       },
     }),
@@ -174,18 +174,18 @@ export function createGraphQLSchema<TContext>(config?: Config<TContext>): graphq
     interfaces: () => [NodeType],
     isTypeOf: config?.User?.__type,
     fields: () => ({
-      id: {
+      id: { 
         type: new graphql.GraphQLNonNull(IDType), description: undefined, deprecationReason: undefined, args: {},
         resolve: config && config.User.id as any,
       },
-      username: {
+      username: { 
         type: new graphql.GraphQLNonNull(StringType), description: undefined, deprecationReason: undefined, args: {},
       },
-      profileUrl: {
+      profileUrl: { 
         type: new graphql.GraphQLNonNull(StringType), description: undefined, deprecationReason: undefined, args: {},
         resolve: config && config.User.profileUrl as any,
       },
-      posts: {
+      posts: { 
         type: new graphql.GraphQLNonNull(PostConnectionType), description: undefined, deprecationReason: undefined, args: {  first: { type: IntType, defaultValue: undefined, description: undefined },   after: { type: StringType, defaultValue: undefined, description: undefined },   last: { type: IntType, defaultValue: undefined, description: undefined },   before: { type: StringType, defaultValue: undefined, description: undefined },},
         resolve: config && config.User.posts as any,
       },
@@ -196,7 +196,7 @@ export function createGraphQLSchema<TContext>(config?: Config<TContext>): graphq
     description: undefined,
     interfaces: () => [],
     fields: () => ({
-      id: {
+      id: { 
         type: new graphql.GraphQLNonNull(IDType), description: undefined, deprecationReason: undefined, args: {},
       },
     }),
@@ -207,16 +207,16 @@ export function createGraphQLSchema<TContext>(config?: Config<TContext>): graphq
     interfaces: () => [],
     isTypeOf: config?.PageInfo?.__type,
     fields: () => ({
-      hasNextPage: {
+      hasNextPage: { 
         type: new graphql.GraphQLNonNull(BooleanType), description: undefined, deprecationReason: undefined, args: {},
       },
-      hasPreviousPage: {
+      hasPreviousPage: { 
         type: new graphql.GraphQLNonNull(BooleanType), description: undefined, deprecationReason: undefined, args: {},
       },
-      startCursor: {
+      startCursor: { 
         type: StringType, description: undefined, deprecationReason: undefined, args: {},
       },
-      endCursor: {
+      endCursor: { 
         type: StringType, description: undefined, deprecationReason: undefined, args: {},
       },
     }),
@@ -227,15 +227,15 @@ export function createGraphQLSchema<TContext>(config?: Config<TContext>): graphq
     interfaces: () => [],
     isTypeOf: config?.Query?.__type,
     fields: () => ({
-      node: {
+      node: { 
         type: NodeType, description: undefined, deprecationReason: undefined, args: {  id: { type: IDType, defaultValue: undefined, description: undefined },},
         resolve: config && config.Query.node as any,
       },
-      nodes: {
+      nodes: { 
         type: new graphql.GraphQLNonNull(new graphql.GraphQLList(new graphql.GraphQLNonNull(NodeType))), description: undefined, deprecationReason: undefined, args: {  ids: { type: new graphql.GraphQLNonNull(new graphql.GraphQLList(new graphql.GraphQLNonNull(IDType))), defaultValue: undefined, description: undefined },},
         resolve: config && config.Query.nodes as any,
       },
-      echo: {
+      echo: { 
         type: new graphql.GraphQLNonNull(StringType), description: undefined, deprecationReason: undefined, args: {  message: { type: new graphql.GraphQLNonNull(StringType), defaultValue: undefined, description: undefined },},
         resolve: config && config.Query.echo as any,
       },
@@ -247,7 +247,7 @@ export function createGraphQLSchema<TContext>(config?: Config<TContext>): graphq
     interfaces: () => [],
     isTypeOf: config?.Mutation?.__type,
     fields: () => ({
-      echo: {
+      echo: { 
         type: new graphql.GraphQLNonNull(StringType), description: undefined, deprecationReason: undefined, args: {  message: { type: new graphql.GraphQLNonNull(StringType), defaultValue: undefined, description: undefined },},
         resolve: config && config.Mutation.echo as any,
       },

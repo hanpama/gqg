@@ -181,8 +181,6 @@ export class ObjectExtension {
     public name: string,
   ) { }
 
-  // get name() { return this.definition.name; }
-
   private interfaces: InterfaceDefinition[] = [];
   addInterface(i: InterfaceDefinition) {
     i.addPossibleType(this.definition)
@@ -306,7 +304,6 @@ export class InputDefinition {
     return Array.from(this.fields.values())
   }
 
-  /** 익스텐션까지 포함한 모든 필드 */
   getAllFields() {
     return Array.from(this.fields.values())
   }
@@ -354,7 +351,6 @@ export class FieldDefinition {
 
   getFullName() {
     if (this.owner instanceof ObjectExtension) {
-      // TODO: 이름구하는방법좀개선
       return [this.owner.module.getFullName(), this.name].filter(i => i).join('__')
     }
     return this.name

@@ -1,0 +1,5 @@
+schema/
+src/
+**/__test__/
+.github/
+tsconfig.json

@@ -1,5 +1,5 @@
-import { GraphQLDirective, DirectiveLocation, GraphQLString, GraphQLNonNull, DirectiveNode, GraphQLDeprecatedDirective, GraphQLBoolean, TypeNode, parseType } from 'graphql'
-import { getArgumentValues, getDirectiveValues } from 'graphql/execution/values'
+import { DirectiveLocation, DirectiveNode, GraphQLDirective, GraphQLString, parseType, TypeNode } from 'graphql'
+import { getArgumentValues } from 'graphql/execution/values'
 
 
 export type SourceOption = { name: string, type: TypeNode, from?: string }

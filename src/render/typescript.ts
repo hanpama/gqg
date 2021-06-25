@@ -39,7 +39,6 @@ function renderNamespace(mod: Module, indent: string): string[] {
   lines.push(...renderNamespaceTypenames(mod, indent))
   lines.push(...renderNamespaceConfig(mod, indent))
 
-  // 타입별 리졸버와 소스 등
   for (const def of mod.getDefinitions()) {
     if (def instanceof ObjectDefinition) {
       lines.push(...renderObjectSource(mod, def, indent))
@@ -49,13 +48,11 @@ function renderNamespace(mod: Module, indent: string): string[] {
     } else if (def instanceof InterfaceDefinition) {
       lines.push(...renderInterfaceSource(mod, def))
     } else if (def instanceof ScalarDefinition) {
-      if (!def.isBuiltIn()) {
+      if (!def.isBuiltIn()) { // TODO: Improve
         lines.push(...renderScalarConfig(mod, def, indent))
       }
     } else if (def instanceof UnionTypeDefinition) {
-      // renderUnionTypeSource
-      lines.push(`export type ${def.name}Source = ${Array.from(def.getPossibleTypes(), f => renderSourceName(mod, f)).join(' | ')
-        }`)
+      lines.push(`export type ${def.name}Source = ${Array.from(def.getPossibleTypes(), f => renderSourceName(mod, f)).join(' | ')}`)
     } else if (def instanceof EnumDefinition) {
       lines.push(`export type ${def.name}Source = ${def.values.map(value => `"${value.name}"`).join(' | ')}`)
     }
@@ -91,7 +88,7 @@ function renderNamespaceTypenames(mod: Module, indent: string) {
 
 function renderNamespaceConfig(mod: Module, indent: string) {
   const lines = []
-  // 모듈 단위 리졸버
+
   const resolvers: Array<ObjectExtension | ObjectDefinition> = []
   const customScalars: Array<ScalarDefinition> = []
 
@@ -235,7 +232,6 @@ function renderGraphQLObjectTypeCode(mod: Module, def: ObjectDefinition, indent:
     indent + `description: ${JSON.stringify(def.description)},`,
     indent + `interfaces: () => [${def.getAllInterfaces().map(i => (
       `${renderTypeExpressionGraphQLCode(mod, new NamedTypeExpression(i))}`
-      // TODO: 여기서 NamedType을 다시 만들 필요는 없을 듯
     ))}],`,
     indent + `isTypeOf: config?.${mod.getSegmentPath().concat(def.name).join('.')}?.__type,`,
     indent + `fields: () => ({`,
@@ -340,7 +336,6 @@ function renderGraphQLUnionTypeCode(mod: Module, def: UnionTypeDefinition, inden
     indent + `description: ${JSON.stringify(def.description)},`,
     indent + `types: () => [${Array.from(def.getPossibleTypes(), i => (
       `${renderTypeExpressionGraphQLCode(mod, new NamedTypeExpression(i))}`
-      // TODO: 여기서 NamedType을 다시 만들 필요는 없을 듯
     ))}],`,
     `})`,
   ]
@@ -373,9 +368,6 @@ function renderGraphQLFieldMap(mod: Module, defs: FieldDefinition[], indent: str
 }
 
 function renderGraphQLField(mod: Module, def: FieldDefinition, indent: string): string[] {
-
-  // 이 메서드는 mod 내 정의가 가진 필드를 모두 선택(extension까지 포함)해서 실행되다보니 mod가 필드 정의된
-  // 모듈과 다를 수 있음
   const fieldMod = def.owner.module
 
   const lines = [

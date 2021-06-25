@@ -47,7 +47,7 @@ import { resolveTypeNode, resolveTypeName } from './typeresolv'
 
 
 export function parseModule(dir: Directory) {
-  const mod = createModuleFromDirectory(dir) // root
+  const mod = createModuleFromDirectory(dir)
 
   for (const scalar of [GraphQLString, GraphQLID, GraphQLFloat, GraphQLInt, GraphQLBoolean]) {
     mod.addDefinition(new ScalarDefinition(mod, scalar.name, scalar.description || undefined))
@@ -280,13 +280,11 @@ function parseField(
     Resolver.create(def)
   }
 
-  if ((node.arguments?.length || 0) > 0) { // args 있을 때
-    // directive 아무것도 없는 필드는 비동기 리졸버임
+  if ((node.arguments?.length || 0) > 0) {
     if (!resolve) {
       Resolver.create(def)
     }
-  } else { // args 없을 때
-    // directive 아무것도 없는 필드는 소스임
+  } else {
     if (!resolve && sourceOpts.length === 0) {
       Source.create(def, def.name, def.type)
     }
@@ -312,17 +310,15 @@ function parseInputValue(mod: Module, node: InputValueDefinitionNode) {
 }
 
 
-/* 여러 임포트 옵션과 타입 노드를 매치해서 타입노드별 임포트 경로 맵을 만듬 */
 function matchTypesAndImports(nodes: readonly TypeNode[], opts: readonly ImportOption[]): Map<TypeNode, string | null> {
   const result = new Map<TypeNode, string | null>()
-  // 옵션이 더 긴 것은 말이 안 됨
+
   if (nodes.length < opts.length) {
-    throw new Error(``)
+    throw new Error(`Invalid import options`)
   }
-  // 타입이 하나인 경우
+
   if (nodes.length === 1) {
     if (opts.length > 0 && typeof opts[0].type === 'string' && opts[0].type !== getTypeName(nodes[0])) {
-      // 하필 하나 임포트하는데 타입 이름을 잘못 쓴 경우
       throw new Error(`Cannot find type maching name ${opts[0].type}`)
     }
     result.set(nodes[0], opts[0]?.from || null)

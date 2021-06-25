@@ -13,7 +13,7 @@ export function resolveTypeNode(mod: Module, def: TypeNode, pathExpr: string | n
   }
 }
 export function resolveTypeName(mod: Module, name: string, pathExpr: string | null | undefined): Definition {
-  if (pathExpr) { // target 모듈 네임이 있으면 그 모듈에서 정의 찾고 없으면 fail
+  if (pathExpr) {
     return resolvePathExpression(mod, pathExpr).mustGetDefinition(name)
   }
   return resolveDefinitionRecursively(mod, name)
